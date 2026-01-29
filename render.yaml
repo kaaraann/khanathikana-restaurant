@@ -8,9 +8,7 @@ services:
     dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: khanathikana-db
-          property: connectionString
+        value: jdbc:postgresql://dpg-d5tktqcr85hc73f2seng-a/khanathikana?sslmode=require
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: khanathikana-db
