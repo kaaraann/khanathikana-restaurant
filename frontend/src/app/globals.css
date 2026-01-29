@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0D0D0D;
+  color: #FAF7F2;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-semibold py-3 px-6 rounded-xl hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-dark-700 text-cream border border-gold-500/30 font-medium py-3 px-6 rounded-xl hover:bg-dark-600 hover:border-gold-500/50 transition-all duration-300;
+  }
+  
+  .card-dark {
+    @apply bg-dark-800 border border-dark-600 rounded-2xl shadow-xl;
+  }
+  
+  .input-dark {
+    @apply bg-dark-700 border border-dark-500 text-cream placeholder-dark-500 rounded-xl px-4 py-3 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all outline-none;
+  }
+  
+  .heading-serif {
+    @apply font-serif text-cream;
+  }
+  
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent;
+  }
+  
+  .glass-dark {
+    @apply bg-dark-800/80 backdrop-blur-xl border border-dark-600/50;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3D3D3D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4A853;
+}
