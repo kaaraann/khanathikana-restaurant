@@ -2,7 +2,7 @@ services:
   # Backend Service
   - type: web
     name: khanathikana-backend
-    env: maven
+    env: java
     plan: free
     buildCommand: "cd backend && mvn clean package -DskipTests"
     startCommand: "cd backend && java -jar target/khanathikana-backend-1.0.0.jar"
@@ -40,10 +40,6 @@ services:
       - key: NEXT_PUBLIC_API_URL
         value: https://khanathikana-backend.onrender.com
     healthCheckPath: /
-    routes:
-      - type: rewrite
-        source: /api/*
-        destination: https://khanathikana-backend.onrender.com/api/*
 
 databases:
   # PostgreSQL Database
