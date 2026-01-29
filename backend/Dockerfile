@@ -11,8 +11,8 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Use OpenJDK runtime image
-FROM openjdk:17-jdk-alpine
+# Use Eclipse Temurin runtime image
+FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
