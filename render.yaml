@@ -1,0 +1,53 @@
+services:
+  # Backend Service
+  - type: web
+    name: khanathikana-backend
+    env: maven
+    plan: free
+    buildCommand: "cd backend && mvn clean package -DskipTests"
+    startCommand: "cd backend && java -jar target/khanathikana-backend-1.0.0.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: khanathikana-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: khanathikana-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: khanathikana-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: 86400000
+    healthCheckPath: /actuator/health
+
+  # Frontend Service
+  - type: web
+    name: khanathikana-frontend
+    env: node
+    plan: free
+    buildCommand: "cd frontend && npm install && npm run build"
+    startCommand: "cd frontend && npm start"
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: NEXT_PUBLIC_API_URL
+        value: https://khanathikana-backend.onrender.com
+    healthCheckPath: /
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://khanathikana-backend.onrender.com/api/*
+
+databases:
+  # PostgreSQL Database
+  - name: khanathikana-db
+    databaseName: khanathikana
+    user: khanathikana_user
+    plan: free

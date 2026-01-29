@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: khanathikana-frontend
+    env: node
+    plan: free
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm start"
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: NEXT_PUBLIC_API_URL
+        value: https://khanathikana-backend.onrender.com
+    healthCheckPath: /
+    autoDeploy: true
